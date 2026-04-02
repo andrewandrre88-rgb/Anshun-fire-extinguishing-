@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, Shield, Flame, CheckCircle, ArrowRight, MessageCircle, Globe, Menu, X } from 'lucide-react';
+import { Phone, Mail, MapPin, Shield, Flame, CheckCircle, ArrowRight, MessageCircle, Globe, Menu, X, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
 import { cn } from './lib/utils';
 import { translations, Language } from './translations';
 
 export default function App() {
   const [lang, setLang] = useState<Language>('en');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
   const t = translations[lang];
 
   useEffect(() => {
@@ -66,6 +67,12 @@ export default function App() {
     '1PfVS3T7LZ_F-Iy5hckN2AGfdvMCHnisp', '1aik07BJAnvP5EqkzFtArmBmz4gjJ4kV4', '1r-NavhAQHgzabTXw2eGOLzji0KWcfmJ9',
     '1-woJTX_8c155zHY7XjXv4XMph0BhM5Ab', '1ANkAMavyGm4Al2FwGCnm5xyHWLVBWSWn'
   ];
+
+  const testimonialItems = [
+    t.testimonials.items.client1,
+    t.testimonials.items.client2,
+    t.testimonials.items.client3,
+  ];
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-red-100 selection:text-red-600">
       {/* Navigation */}
@@ -97,6 +104,9 @@ export default function App() {
                 <option value="fa">فارسی</option>
                 <option value="pt">Português</option>
                 <option value="ar">العربية</option>
+                <option value="zh">中文</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국어</option>
               </select>
             </div>
             <a href="#about" className="text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.about}</a>
@@ -158,6 +168,9 @@ export default function App() {
                   <option value="fa">فارسی</option>
                   <option value="pt">Português</option>
                   <option value="ar">العربية</option>
+                  <option value="zh">中文</option>
+                  <option value="ja">日本語</option>
+                  <option value="ko">한국어</option>
                 </select>
               </div>
               <a 
@@ -199,6 +212,24 @@ export default function App() {
               >
                 {t.nav.getQuote}
               </a>
+
+              <div className="mt-4 flex justify-center gap-6 border-t border-gray-100 pt-8">
+                <a href="#" className="text-gray-400 transition-colors hover:text-red-600">
+                  <Facebook size={24} />
+                </a>
+                <a href="#" className="text-gray-400 transition-colors hover:text-red-600">
+                  <Twitter size={24} />
+                </a>
+                <a href="#" className="text-gray-400 transition-colors hover:text-red-600">
+                  <Instagram size={24} />
+                </a>
+                <a href="#" className="text-gray-400 transition-colors hover:text-red-600">
+                  <Linkedin size={24} />
+                </a>
+                <a href="#" className="text-gray-400 transition-colors hover:text-red-600">
+                  <Youtube size={24} />
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
@@ -400,6 +431,52 @@ export default function App() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <section className="bg-gray-50 py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{t.testimonials.title}</h2>
+            <p className="mt-4 text-lg text-gray-600">{t.testimonials.desc}</p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {testimonialItems.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex flex-col rounded-2xl bg-white p-8 shadow-sm border border-gray-100"
+              >
+                <div className="mb-6 flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-red-600 font-bold text-xl">
+                    {item.name.charAt(0)}
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-gray-900">{item.name}</h4>
+                    <p className="text-sm text-gray-500">{item.company}</p>
+                  </div>
+                </div>
+                
+                <div className="relative flex-grow">
+                  <p className="text-gray-600 leading-relaxed italic">
+                    "{expandedTestimonial === index ? item.fullDesc : item.shortDesc}"
+                  </p>
+                  <button
+                    onClick={() => setExpandedTestimonial(expandedTestimonial === index ? null : index)}
+                    className="mt-4 text-sm font-bold text-red-600 hover:text-red-700 transition-colors flex items-center gap-1"
+                  >
+                    {expandedTestimonial === index ? t.testimonials.readLess : t.testimonials.readMore}
+                    <ArrowRight size={14} className={cn("transition-transform", expandedTestimonial === index ? "-rotate-90" : "rotate-0")} />
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact Section */}
       <section id="contact" className="bg-gray-900 py-24 text-white overflow-hidden relative">
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
@@ -453,6 +530,27 @@ export default function App() {
               <div className="mt-12 rounded-2xl bg-gray-800/50 p-6 border border-gray-700">
                 <p className="text-sm text-gray-400">{t.contact.owner}</p>
                 <p className="text-xl font-bold text-white">Tessa Zhou</p>
+              </div>
+
+              <div className="mt-12">
+                <p className="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">{t.footer.followUs}</p>
+                <div className="flex gap-4">
+                  <a href="#" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-white transition-all hover:bg-red-600 hover:scale-110">
+                    <Facebook size={24} />
+                  </a>
+                  <a href="#" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-white transition-all hover:bg-red-600 hover:scale-110">
+                    <Twitter size={24} />
+                  </a>
+                  <a href="#" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-white transition-all hover:bg-red-600 hover:scale-110">
+                    <Instagram size={24} />
+                  </a>
+                  <a href="#" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-white transition-all hover:bg-red-600 hover:scale-110">
+                    <Linkedin size={24} />
+                  </a>
+                  <a href="#" className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 text-white transition-all hover:bg-red-600 hover:scale-110">
+                    <Youtube size={24} />
+                  </a>
+                </div>
               </div>
             </div>
             
@@ -522,6 +620,27 @@ export default function App() {
               <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[10px] font-bold text-gray-400">CE</div>
               <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[10px] font-bold text-gray-400">UL</div>
               <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 bg-gray-50 text-[10px] font-bold text-gray-400">ISO</div>
+            </div>
+
+            <div className="flex flex-col items-center gap-4">
+              <span className="text-sm font-semibold text-gray-500 uppercase tracking-wider">{t.footer.followUs}</span>
+              <div className="flex gap-4">
+                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-red-600 hover:text-white">
+                  <Facebook size={20} />
+                </a>
+                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-red-600 hover:text-white">
+                  <Twitter size={20} />
+                </a>
+                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-red-600 hover:text-white">
+                  <Instagram size={20} />
+                </a>
+                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-red-600 hover:text-white">
+                  <Linkedin size={20} />
+                </a>
+                <a href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all hover:bg-red-600 hover:text-white">
+                  <Youtube size={20} />
+                </a>
+              </div>
             </div>
 
             <p className="text-sm text-gray-500">
