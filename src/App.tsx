@@ -33,13 +33,54 @@ export default function App() {
     },
   ];
 
+  const getProductDetails = (key: 'abc' | 'co2' | 'water' | 'foam' | 'stainless' | 'automatic') => {
+    switch (lang) {
+      case 'ru':
+        return {
+          abc: { name: 'Огнетушитель ОП (ABC)', desc: 'Высокоэффективный многоцелевой порошковый огнетушитель для классов пожара A, B, C.' },
+          co2: { name: 'Углекислотный огнетушитель (CO2)', desc: 'Профессиональный газовый огнетушитель для электроустановок и проводки.' },
+          water: { name: 'Водно-эмульсионный огнетушитель', desc: 'Экологичный и безопасный огнетушитель на водной основе.' },
+          foam: { name: 'Воздушно-пенный огнетушитель', desc: 'Быстрое подавление жидких горючих материалов и твердых тел.' },
+          stainless: { name: 'Нержавеющая серия (Водный)', desc: 'Элегантный и прочный корпус из нержавеющей стали с антикоррозийной защитой.' },
+          automatic: { name: 'Автоматический самосрабатывающий', desc: 'Потолочная тепловая система пожаротушения мгновенного действия.' },
+        }[key];
+      case 'es':
+        return {
+          abc: { name: 'Extintor de Polvo ABC', desc: 'Extintor multiusos de alta eficacia para clases A, B y C.' },
+          co2: { name: 'Extintor de CO2', desc: 'Extintor de gas profesional para incendios eléctricos y maquinaría.' },
+          water: { name: 'Extintor a Base de Agua', desc: 'Extintor ecológico y seguro para fuegos domésticos.' },
+          foam: { name: 'Extintor de Espuma', desc: 'Supresión rápida para líquidos inflamables y combustibles.' },
+          stainless: { name: 'Serie de Acero Inoxidable', desc: 'Cuerpo duradero y elegante de acero pulido resistente a la corrosión.' },
+          automatic: { name: 'Sistema Automático de Techo', desc: 'Extintor térmico automático suspendido para protección constante.' },
+        }[key];
+      case 'th':
+        return {
+          abc: { name: 'เครื่องดับเพลิงผงเคมีแห้ง ABC', desc: 'เครื่องดับเพลิงอเนกประสงค์ประสิทธิภาพสูงสำหรับไฟประเภท A, B, C' },
+          co2: { name: 'เครื่องดับเพลิงก๊าซ CO2', desc: 'เครื่องดับเพลิงระดับมืออาชีพสำหรับไฟจากไฟฟ้าและเครื่องจักร' },
+          water: { name: 'เครื่องดับเพลิงสูตรน้ำ', desc: 'ปลอดภัยต่อสิ่งแวดล้อมและเหมาะสำหรับใช้งานในบ้าน' },
+          foam: { name: 'เครื่องดับเพลิงสูตรโฟม', desc: 'ดับไฟจากของเหลวไวไฟและวัสดุแข็งได้อย่างรวดเร็ว' },
+          stainless: { name: 'รุ่นถังสแตนเลส (น้ำ)', desc: 'ถังสแตนเลสสตีลหรูหรา ทนทาน ป้องกันการกัดกร่อนได้อย่างดีเยี่ยม' },
+          automatic: { name: 'ระบบดับเพลิงอัตโนมัติติดเพดาน', desc: 'ระบบทำงานอัตโนมัติด้วยความร้อน ติดตั้งบนเพดาน เพื่อการปกป้องตลอด 24 ชั่วโมง' },
+        }[key];
+      default:
+        return {
+          abc: { name: 'ABC Dry Powder Extinguisher', desc: 'High-performance multi-purpose extinguisher for A, B, and C class fires.' },
+          co2: { name: 'CO2 Gas Fire Extinguisher', desc: 'Professional gas extinguisher designed for electrical fires and machinery.' },
+          water: { name: 'Water-Based Extinguisher', desc: 'Eco-friendly and highly safe water spray for home and household protection.' },
+          foam: { name: 'Foam Fire Extinguisher', desc: 'Rapid cooling and knockdown for flammable liquid fires.' },
+          stainless: { name: 'Stainless Steel Water Extinguisher', desc: 'Elegant and highly durable corrosion-resistant polished steel body.' },
+          automatic: { name: 'Automatic Ceiling-Mounted Extinguisher', desc: 'Thermal-activated ceiling fire suppression system for constant building safety.' },
+        }[key];
+    }
+  };
+
   const productItems = [
-    { ...t.products.items.abc, image: 'https://lh3.googleusercontent.com/d/1vQLFInleUyZfNDIWdHD4A_0ycGhIPnXY' },
-    { ...t.products.items.co2, image: 'https://lh3.googleusercontent.com/d/1_5OQx5zwvGf5nOPtzI6EzNOOf0HSDHjR' },
-    { ...t.products.items.water, image: 'https://lh3.googleusercontent.com/d/1kxHmg9InKV05tDxFKwBhb2isyatFr_Ag' },
-    { ...t.products.items.foam, image: 'https://lh3.googleusercontent.com/d/17gsO_rTDD7KkY5C49uSLsSwfEdT7HUyX' },
-    { ...t.products.items.stainless, image: 'https://lh3.googleusercontent.com/d/1BNxJBvcNvylIcIs_BFM82-nNuxporYay' },
-    { ...t.products.items.automatic, image: 'https://lh3.googleusercontent.com/d/1oc8MdeBe6tQkt7HuWm_orzjKTqizbxo9' },
+    { ...getProductDetails('abc'), image: 'https://lh3.googleusercontent.com/d/1vQLFInleUyZfNDIWdHD4A_0ycGhIPnXY' },
+    { ...getProductDetails('co2'), image: 'https://lh3.googleusercontent.com/d/1_5OQx5zwvGf5nOPtzI6EzNOOf0HSDHjR' },
+    { ...getProductDetails('water'), image: 'https://lh3.googleusercontent.com/d/1kxHmg9InKV05tDxFKwBhb2isyatFr_Ag' },
+    { ...getProductDetails('foam'), image: 'https://lh3.googleusercontent.com/d/17gsO_rTDD7KkY5C49uSLsSwfEdT7HUyX' },
+    { ...getProductDetails('stainless'), image: 'https://lh3.googleusercontent.com/d/1BNxJBvcNvylIcIs_BFM82-nNuxporYay' },
+    { ...getProductDetails('automatic'), image: 'https://lh3.googleusercontent.com/d/1oc8MdeBe6tQkt7HuWm_orzjKTqizbxo9' },
   ];
 
   const galleryImages = [
@@ -78,13 +119,13 @@ export default function App() {
       {/* Navigation */}
       <nav className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-600 text-white">
-              <Flame size={24} />
-            </div>
-            <span className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
-              ANSHUN <span className="text-red-600">FIRE</span>
-            </span>
+          <div className="flex items-center gap-3">
+            <img 
+              src="https://github.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/blob/main/file_00000000866472089adb0f473d58b50b.png.jpg?raw=true" 
+              alt="Anshun Logo" 
+              className="h-10 w-10 rounded-lg object-cover bg-red-50 p-0.5 shadow-sm" 
+              referrerPolicy="no-referrer"
+            />
           </div>
           <div className="hidden items-center gap-6 md:flex">
             <div className="flex items-center gap-2 border-r border-gray-100 pr-6 mr-2">
@@ -369,7 +410,7 @@ export default function App() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{t.products.title}</h2>
-            <p className="mt-4 text-lg text-gray-600">{t.products.desc}</p>
+            <p className="mt-4 text-lg text-gray-600">{t.products.subtitle}</p>
           </div>
           
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -607,10 +648,13 @@ export default function App() {
       <footer className="border-t border-gray-100 bg-white py-12">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-red-600 text-white">
-                <Flame size={18} />
-              </div>
+            <div className="flex items-center gap-3">
+              <img 
+                src="https://github.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/blob/main/file_00000000866472089adb0f473d58b50b.png.jpg?raw=true" 
+                alt="Anshun Logo" 
+                className="h-8 w-8 rounded-lg object-cover bg-red-50 p-0.5 shadow-sm" 
+                referrerPolicy="no-referrer"
+              />
               <span className="text-lg font-bold tracking-tight text-gray-900">
                 ANSHUN <span className="text-red-600">FIRE</span>
               </span>

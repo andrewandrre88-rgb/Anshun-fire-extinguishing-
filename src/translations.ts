@@ -37,14 +37,46 @@ export interface TranslationContent {
   };
   products: {
     title: string;
-    desc: string;
-    items: {
-      abc: { name: string; desc: string };
-      co2: { name: string; desc: string };
-      water: { name: string; desc: string };
-      foam: { name: string; desc: string };
-      stainless: { name: string; desc: string };
-      automatic: { name: string; desc: string };
+    subtitle: string;
+    viewProducts: string;
+    getQuote: string;
+    categories: {
+      title: string;
+      portable: { title: string; desc: string };
+      mediumLarge: { title: string; desc: string };
+      dryPowder: { title: string; desc: string };
+      industrial: { title: string; desc: string };
+    };
+    filters: {
+      all: string;
+      type: string;
+      capacity: string;
+      useCase: string;
+      waterBased: string;
+      dryPowder: string;
+      small: string;
+      medium: string;
+      large: string;
+      home: string;
+      car: string;
+      industrial: string;
+    };
+    specs: {
+      capacity: string;
+      material: string;
+      rating: string;
+    };
+    tags: {
+      bestSeller: string;
+      carUse: string;
+      industrial: string;
+      homeUse: string;
+    };
+    features: {
+      eco: { title: string; desc: string };
+      protection: { title: string; desc: string };
+      portable: { title: string; desc: string };
+      industrial: { title: string; desc: string };
     };
   };
   gallery: {
@@ -128,15 +160,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'Expert Support',
     },
     products: {
-      title: 'Our Product Range',
-      desc: 'Engineered for reliability and performance in critical situations.',
-      items: {
-        abc: { name: 'ABC Dry Powder Extinguisher', desc: 'Versatile fire protection for Class A, B, and C fires. Available in various sizes.' },
-        co2: { name: 'CO2 Fire Extinguisher', desc: 'Ideal for electrical fires and flammable liquid risks. Leaves no residue.' },
-        water: { name: 'Water-Based Extinguisher', desc: 'Effective cooling and extinguishing for Class A fires (wood, paper, textiles).' },
-        foam: { name: 'Foam Fire Extinguisher', desc: 'Excellent for Class B flammable liquid fires. Creates a sealing film.' },
-        stainless: { name: 'Stainless Steel Series', desc: 'Premium corrosion-resistant extinguishers for harsh environments.' },
-        automatic: { name: 'Automatic Extinguisher', desc: 'Ceiling-mounted automatic suppression for unmanned areas.' },
+      title: 'Fire Safety Solutions',
+      subtitle: 'Eco-Friendly Water-Based & Dry Powder Fire Extinguishers',
+      viewProducts: 'View Products',
+      getQuote: 'Get Quote',
+      categories: {
+        title: 'Product Categories',
+        portable: { title: 'Water-Based Portable', desc: 'Small Aerosol Style for cars and kitchens.' },
+        mediumLarge: { title: 'Water-Based Medium & Large', desc: 'Premium stainless steel for home and office.' },
+        dryPowder: { title: 'Dry Powder Extinguishers', desc: 'Versatile protection for multiple fire classes.' },
+        industrial: { title: 'Industrial / Trolley', desc: 'High-capacity solutions for heavy-duty protection.' },
+      },
+      filters: {
+        all: 'All Products',
+        type: 'Type',
+        capacity: 'Capacity',
+        useCase: 'Use Case',
+        waterBased: 'Water-Based',
+        dryPowder: 'Dry Powder',
+        small: 'Small (< 1kg)',
+        medium: 'Medium (1-6kg)',
+        large: 'Large (> 6kg)',
+        home: 'Home',
+        car: 'Car',
+        industrial: 'Industrial',
+      },
+      specs: {
+        capacity: 'Capacity',
+        material: 'Material',
+        rating: 'Fire Rating',
+      },
+      tags: {
+        bestSeller: 'Best Seller',
+        carUse: 'Car Use',
+        industrial: 'Industrial',
+        homeUse: 'Home Use',
+      },
+      features: {
+        eco: { title: 'Eco-Friendly Technology', desc: 'Environmentally safe agents.' },
+        protection: { title: 'Multi-Fire Protection', desc: 'Covers A, B, E, F fire classes.' },
+        portable: { title: 'Compact & Portable', desc: 'Easy to handle in emergencies.' },
+        industrial: { title: 'Industrial Grade', desc: 'Built for maximum performance.' },
       },
     },
     gallery: {
@@ -233,15 +297,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'Soporte Experto',
     },
     products: {
-      title: 'Nuestra Gama de Productos',
-      desc: 'Diseñados para la confiabilidad y el rendimiento en situaciones críticas.',
-      items: {
-        abc: { name: 'Extintor de Polvo Seco ABC', desc: 'Protección versátil para incendios de Clase A, B y C. Disponible en varios tamaños.' },
-        co2: { name: 'Extintor de CO2', desc: 'Ideal para incendios eléctricos y riesgos de líquidos inflamables. No deja residuos.' },
-        water: { name: 'Extintor a Base de Agua', desc: 'Enfriamiento y extinción efectivos para incendios de Clase A (madera, papel, textiles).' },
-        foam: { name: 'Extintor de Espuma', desc: 'Excelente para incendios de líquidos inflamables de Clase B. Crea una película selladora.' },
-        stainless: { name: 'Serie de Acero Inoxidable', desc: 'Extintores premium resistentes a la corrosión para entornos hostiles.' },
-        automatic: { name: 'Extintor Automático', desc: 'Supresión automática montada en el techo para áreas no tripuladas.' },
+      title: 'Soluciones de Seguridad Contra Incendios',
+      subtitle: 'Extintores Ecológicos de Agua y Polvo Seco',
+      viewProducts: 'Ver Productos',
+      getQuote: 'Obtener Cotización',
+      categories: {
+        title: 'Categorías de Productos',
+        portable: { title: 'Portátil a Base de Agua', desc: 'Estilo aerosol pequeño para autos y cocinas.' },
+        mediumLarge: { title: 'Agua Mediano y Grande', desc: 'Acero inoxidable premium para hogar y oficina.' },
+        dryPowder: { title: 'Extintores de Polvo Seco', desc: 'Protección versátil para múltiples clases de fuego.' },
+        industrial: { title: 'Industrial / Carro', desc: 'Soluciones de alta capacidad para protección pesada.' },
+      },
+      filters: {
+        all: 'Todos los Productos',
+        type: 'Tipo',
+        capacity: 'Capacidad',
+        useCase: 'Uso',
+        waterBased: 'A Base de Agua',
+        dryPowder: 'Polvo Seco',
+        small: 'Pequeño (< 1kg)',
+        medium: 'Mediano (1-6kg)',
+        large: 'Grande (> 6kg)',
+        home: 'Hogar',
+        car: 'Auto',
+        industrial: 'Industrial',
+      },
+      specs: {
+        capacity: 'Capacidad',
+        material: 'Material',
+        rating: 'Clasificación',
+      },
+      tags: {
+        bestSeller: 'Más Vendido',
+        carUse: 'Uso en Auto',
+        industrial: 'Industrial',
+        homeUse: 'Uso Doméstico',
+      },
+      features: {
+        eco: { title: 'Tecnología Ecológica', desc: 'Agentes seguros para el medio ambiente.' },
+        protection: { title: 'Protección Multi-Fuego', desc: 'Cubre clases de fuego A, B, E, F.' },
+        portable: { title: 'Compacto y Portátil', desc: 'Fácil de manejar en emergencias.' },
+        industrial: { title: 'Grado Industrial', desc: 'Construido para el máximo rendimiento.' },
       },
     },
     gallery: {
@@ -338,15 +434,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'Экспертная поддержка',
     },
     products: {
-      title: 'Наш ассортимент продукции',
-      desc: 'Разработано для надежности и производительности в критических ситуациях.',
-      items: {
-        abc: { name: 'Порошковый огнетушитель ABC', desc: 'Универсальная противопожарная защита для пожаров классов A, B и C. Доступен в различных размерах.' },
-        co2: { name: 'Углекислотный огнетушитель (CO2)', desc: 'Идеально подходит для тушения электроустановок и легковоспламеняющихся жидкостей. Не оставляет следов.' },
-        water: { name: 'Водный огнетушитель', desc: 'Эффективное охлаждение и тушение пожаров класса A (дерево, бумага, текстиль).' },
-        foam: { name: 'Воздушно-пенный огнетушитель', desc: 'Отлично подходит для тушения легковоспламеняющихся жидкостей класса B. Создает изолирующую пленку.' },
-        stainless: { name: 'Серия из нержавеющей стали', desc: 'Высококачественные коррозионностойкие огнетушители для агрессивных сред.' },
-        automatic: { name: 'Автоматический огнетушитель', desc: 'Потолочная система автоматического пожаротушения для необслуживаемых помещений.' },
+      title: 'Fire Safety Solutions',
+      subtitle: 'Eco-Friendly Water-Based & Dry Powder Fire Extinguishers',
+      viewProducts: 'View Products',
+      getQuote: 'Get Quote',
+      categories: {
+        title: 'Product Categories',
+        portable: { title: 'Water-Based Portable', desc: 'Small Aerosol Style for cars and kitchens.' },
+        mediumLarge: { title: 'Water-Based Medium & Large', desc: 'Premium stainless steel for home and office.' },
+        dryPowder: { title: 'Dry Powder Extinguishers', desc: 'Versatile protection for multiple fire classes.' },
+        industrial: { title: 'Industrial / Trolley', desc: 'High-capacity solutions for heavy-duty protection.' },
+      },
+      filters: {
+        all: 'All Products',
+        type: 'Type',
+        capacity: 'Capacity',
+        useCase: 'Use Case',
+        waterBased: 'Water-Based',
+        dryPowder: 'Dry Powder',
+        small: 'Small (< 1kg)',
+        medium: 'Medium (1-6kg)',
+        large: 'Large (> 6kg)',
+        home: 'Home',
+        car: 'Car',
+        industrial: 'Industrial',
+      },
+      specs: {
+        capacity: 'Capacity',
+        material: 'Material',
+        rating: 'Fire Rating',
+      },
+      tags: {
+        bestSeller: 'Best Seller',
+        carUse: 'Car Use',
+        industrial: 'Industrial',
+        homeUse: 'Home Use',
+      },
+      features: {
+        eco: { title: 'Eco-Friendly Technology', desc: 'Environmentally safe agents.' },
+        protection: { title: 'Multi-Fire Protection', desc: 'Covers A, B, E, F fire classes.' },
+        portable: { title: 'Compact & Portable', desc: 'Easy to handle in emergencies.' },
+        industrial: { title: 'Industrial Grade', desc: 'Built for maximum performance.' },
       },
     },
     gallery: {
@@ -443,15 +571,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'دعم الخبراء',
     },
     products: {
-      title: 'مجموعة منتجاتنا',
-      desc: 'مصممة للموثوقية والأداء في المواقف الحرجة.',
-      items: {
-        abc: { name: 'طفاية بودرة جافة ABC', desc: 'حماية متنوعة من الحرائق للفئات A و B و C. متوفرة بأحجام مختلفة.' },
-        co2: { name: 'طفاية حريق ثاني أكسيد الكربون', desc: 'مثالية للحرائق الكهربائية ومخاطر السوائل القابلة للاشتعال. لا تترك أي بقايا.' },
-        water: { name: 'طفاية حريق مائية', desc: 'تبريد وإطفاء فعال لحرائق الفئة A (الخشب والورق والمنسوجات).' },
-        foam: { name: 'طفاية حريق رغوية', desc: 'ممتازة لحرائق السوائل القابلة للاشتعال من الفئة B. تخلق طبقة عازلة.' },
-        stainless: { name: 'سلسلة الفولاذ المقاوم للصدأ', desc: 'طفايات حريق متميزة مقاومة للتآكل للبيئات القاسية.' },
-        automatic: { name: 'طفاية حريق أوتوماتيكية', desc: 'نظام إخماد أوتوماتيكي مثبت في السقف للمناطق غير المأهولة.' },
+      title: 'حلول السلامة من الحرائق',
+      subtitle: 'طفايات حريق مائية وجافة صديقة للبيئة',
+      viewProducts: 'عرض المنتجات',
+      getQuote: 'طلب اقتباس',
+      categories: {
+        title: 'فئات المنتجات',
+        portable: { title: 'محمول مائي', desc: 'نمط رذاذ صغير للسيارات والمطابخ.' },
+        mediumLarge: { title: 'مائي متوسط وكبير', desc: 'فولاذ مقاوم للصدأ ممتاز للمنزل والمكتب.' },
+        dryPowder: { title: 'طفايات البودرة الجافة', desc: 'حماية متعددة الاستخدامات لفئات حرائق متعددة.' },
+        industrial: { title: 'صناعي / عربة', desc: 'حلول عالية السعة للحماية الشاقة.' },
+      },
+      filters: {
+        all: 'جميع المنتجات',
+        type: 'النوع',
+        capacity: 'السعة',
+        useCase: 'حالة الاستخدام',
+        waterBased: 'مائي',
+        dryPowder: 'بودرة جافة',
+        small: 'صغير (< 1 كجم)',
+        medium: 'متوسط (1-6 كجم)',
+        large: 'كبير (> 6 كجم)',
+        home: 'منزل',
+        car: 'سيارة',
+        industrial: 'صناعي',
+      },
+      specs: {
+        capacity: 'السعة',
+        material: 'المادة',
+        rating: 'تصنيف الحريق',
+      },
+      tags: {
+        bestSeller: 'الأكثر مبيعاً',
+        carUse: 'استخدام السيارة',
+        industrial: 'صناعي',
+        homeUse: 'استخدام منزلي',
+      },
+      features: {
+        eco: { title: 'تكنولوجيا صديقة للبيئة', desc: 'مواد آمنة بيئياً.' },
+        protection: { title: 'حماية متعددة من الحرائق', desc: 'يغطي فئات الحرائق A, B, E, F.' },
+        portable: { title: 'مدمج ومحمول', desc: 'سهل التعامل في حالات الطوارئ.' },
+        industrial: { title: 'درجة صناعية', desc: 'مصمم لأقصى أداء.' },
       },
     },
     gallery: {
@@ -548,15 +708,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'Support Expert',
     },
     products: {
-      title: 'Notre Gamme de Produits',
-      desc: 'Conçus pour la fiabilité et la performance dans les situations critiques.',
-      items: {
-        abc: { name: 'Extincteur à Poudre Sèche ABC', desc: 'Protection incendie polyvalente pour les feux de classe A, B et C. Disponible en plusieurs tailles.' },
-        co2: { name: 'Extincteur au CO2', desc: 'Idéal pour les feux électriques et les risques de liquides inflammables. Ne laisse aucun résidu.' },
-        water: { name: 'Extincteur à Eau', desc: 'Refroidissement et extinction efficaces pour les feux de classe A (bois, papier, textiles).' },
-        foam: { name: 'Extincteur à Mousse', desc: 'Excellent pour les feux de liquides inflammables de classe B. Crée un film d\'étanchéité.' },
-        stainless: { name: 'Série en Acier Inoxydable', desc: 'Extincteurs haut de gamme résistants à la corrosion pour les environnements difficiles.' },
-        automatic: { name: 'Extincteur Automatique', desc: 'Suppression automatique montée au plafond pour les zones non habitées.' },
+      title: 'Solutions de Sécurité Incendie',
+      subtitle: 'Extincteurs à Eau et à Poudre Écologiques',
+      viewProducts: 'Voir les Produits',
+      getQuote: 'Obtenir un Devis',
+      categories: {
+        title: 'Catégories de Produits',
+        portable: { title: 'Eau Portatif', desc: 'Style aérosol pour voitures et cuisines.' },
+        mediumLarge: { title: 'Eau Moyen & Grand', desc: 'Acier inoxydable premium pour maison et bureau.' },
+        dryPowder: { title: 'Extincteurs à Poudre', desc: 'Protection polyvalente pour plusieurs classes de feu.' },
+        industrial: { title: 'Industriel / Sur Roues', desc: 'Solutions haute capacité pour protection intensive.' },
+      },
+      filters: {
+        all: 'Tous les Produits',
+        type: 'Type',
+        capacity: 'Capacité',
+        useCase: 'Usage',
+        waterBased: 'À base d\'eau',
+        dryPowder: 'Poudre sèche',
+        small: 'Petit (< 1kg)',
+        medium: 'Moyen (1-6kg)',
+        large: 'Grand (> 6kg)',
+        home: 'Maison',
+        car: 'Voiture',
+        industrial: 'Industriel',
+      },
+      specs: {
+        capacity: 'Capacité',
+        material: 'Matériau',
+        rating: 'Classe de feu',
+      },
+      tags: {
+        bestSeller: 'Meilleure Vente',
+        carUse: 'Usage Voiture',
+        industrial: 'Industriel',
+        homeUse: 'Usage Maison',
+      },
+      features: {
+        eco: { title: 'Technologie Écologique', desc: 'Agents respectueux de l\'environnement.' },
+        protection: { title: 'Protection Multi-Feux', desc: 'Couvre les classes A, B, E, F.' },
+        portable: { title: 'Compact & Portable', desc: 'Facile à manipuler en urgence.' },
+        industrial: { title: 'Qualité Industrielle', desc: 'Conçu pour une performance maximale.' },
       },
     },
     gallery: {
@@ -653,15 +845,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'Hỗ trợ chuyên gia',
     },
     products: {
-      title: 'Danh mục sản phẩm của chúng tôi',
-      desc: 'Được thiết kế để đảm bảo độ tin cậy và hiệu suất trong các tình huống quan trọng.',
-      items: {
-        abc: { name: 'Bình chữa cháy bột khô ABC', desc: 'Bảo vệ đa năng cho đám cháy loại A, B và C. Có sẵn nhiều kích cỡ.' },
-        co2: { name: 'Bình chữa cháy CO2', desc: 'Lý tưởng cho đám cháy điện và rủi ro chất lỏng dễ cháy. Không để lại dư lượng.' },
-        water: { name: 'Bình chữa cháy gốc nước', desc: 'Làm mát và dập tắt hiệu quả cho đám cháy loại A (gỗ, giấy, dệt may).' },
-        foam: { name: 'Bình chữa cháy bọt', desc: 'Tuyệt vời cho đám cháy chất lỏng dễ cháy loại B. Tạo màng ngăn cách.' },
-        stainless: { name: 'Dòng thép không gỉ', desc: 'Bình chữa cháy cao cấp chống ăn mòn cho môi trường khắc nghiệt.' },
-        automatic: { name: 'Bình chữa cháy tự động', desc: 'Hệ thống dập tắt tự động gắn trần cho các khu vực không người trực.' },
+      title: 'Giải pháp An toàn Cháy nổ',
+      subtitle: 'Bình chữa cháy gốc nước & bột khô thân thiện với môi trường',
+      viewProducts: 'Xem sản phẩm',
+      getQuote: 'Nhận báo giá',
+      categories: {
+        title: 'Danh mục sản phẩm',
+        portable: { title: 'Gốc nước di động', desc: 'Kiểu khí dung nhỏ cho ô tô và nhà bếp.' },
+        mediumLarge: { title: 'Gốc nước vừa & lớn', desc: 'Thép không gỉ cao cấp cho gia đình và văn phòng.' },
+        dryPowder: { title: 'Bình chữa cháy bột khô', desc: 'Bảo vệ đa năng cho nhiều loại đám cháy.' },
+        industrial: { title: 'Công nghiệp / Xe đẩy', desc: 'Giải pháp công suất cao cho bảo vệ hạng nặng.' },
+      },
+      filters: {
+        all: 'Tất cả sản phẩm',
+        type: 'Loại',
+        capacity: 'Dung tích',
+        useCase: 'Mục đích sử dụng',
+        waterBased: 'Gốc nước',
+        dryPowder: 'Bột khô',
+        small: 'Nhỏ (< 1kg)',
+        medium: 'Vừa (1-6kg)',
+        large: 'Lớn (> 6kg)',
+        home: 'Gia đình',
+        car: 'Ô tô',
+        industrial: 'Công nghiệp',
+      },
+      specs: {
+        capacity: 'Dung tích',
+        material: 'Chất liệu',
+        rating: 'Xếp hạng hỏa hoạn',
+      },
+      tags: {
+        bestSeller: 'Bán chạy nhất',
+        carUse: 'Dùng cho ô tô',
+        industrial: 'Công nghiệp',
+        homeUse: 'Dùng cho gia đình',
+      },
+      features: {
+        eco: { title: 'Công nghệ thân thiện môi trường', desc: 'Chất chữa cháy an toàn môi trường.' },
+        protection: { title: 'Bảo vệ đa năng', desc: 'Bao gồm các loại đám cháy A, B, E, F.' },
+        portable: { title: 'Nhỏ gọn & Di động', desc: 'Dễ dàng xử lý trong trường hợp khẩn cấp.' },
+        industrial: { title: 'Cấp công nghiệp', desc: 'Được chế tạo để đạt hiệu suất tối đa.' },
       },
     },
     gallery: {
@@ -758,15 +982,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'विशेषज्ञ सहायता',
     },
     products: {
-      title: 'हमारी उत्पाद श्रृंखला',
-      desc: 'महत्वपूर्ण स्थितियों में विश्वसनीयता और प्रदर्शन के लिए इंजीनियर किया गया।',
-      items: {
-        abc: { name: 'ABC ड्राई पाउडर अग्निशामक', desc: 'क्लास A, B और C की आग के लिए बहुमुखी सुरक्षा। विभिन्न आकारों में उपलब्ध।' },
-        co2: { name: 'CO2 अग्निशामक', desc: 'बिजली की आग और ज्वलनशील तरल जोखिमों के लिए आदर्श। कोई अवशेष नहीं छोड़ता।' },
-        water: { name: 'जल-आधारित अग्निशामक', desc: 'क्लास A की आग (लकड़ी, कागज, कपड़ा) के लिए प्रभावी शीतलन और शमन।' },
-        foam: { name: 'फोम अग्निशामक', desc: 'क्लास B ज्वलनशील तरल आग के लिए उत्कृष्ट। एक सीलिंग फिल्म बनाता है।' },
-        stainless: { name: 'स्टेनलेस स्टील श्रृंखला', desc: 'कठोर वातावरण के लिए प्रीमियम संक्षारण प्रतिरोधी अग्निशामक।' },
-        automatic: { name: 'स्वचालित अग्निशामक', desc: 'मानवरहित क्षेत्रों के लिए छत पर लगा स्वचालित दमन प्रणाली।' },
+      title: 'अग्नि सुरक्षा समाधान',
+      subtitle: 'पर्यावरण के अनुकूल जल-आधारित और सूखा पाउडर अग्निशामक',
+      viewProducts: 'उत्पाद देखें',
+      getQuote: 'कोट प्राप्त करें',
+      categories: {
+        title: 'उत्पाद श्रेणियां',
+        portable: { title: 'जल-आधारित पोर्टेबल', desc: 'कारों और रसोई के लिए छोटे एरोसोल स्टाइल।' },
+        mediumLarge: { title: 'जल-आधारित मध्यम और बड़े', desc: 'घर और कार्यालय के लिए प्रीमियम स्टेनलेस स्टील।' },
+        dryPowder: { title: 'सूखा पाउडर अग्निशामक', desc: 'कई अग्नि श्रेणियों के लिए बहुमुखी सुरक्षा।' },
+        industrial: { title: 'औद्योगिक / ट्रॉली', desc: 'भारी सुरक्षा के लिए उच्च क्षमता वाले समाधान।' },
+      },
+      filters: {
+        all: 'सभी उत्पाद',
+        type: 'प्रकार',
+        capacity: 'क्षमता',
+        useCase: 'उपयोग का मामला',
+        waterBased: 'जल-आधारित',
+        dryPowder: 'सूखा पाउडर',
+        small: 'छोटा (< 1kg)',
+        medium: 'मध्यम (1-6kg)',
+        large: 'बड़ा (> 6kg)',
+        home: 'घर',
+        car: 'कार',
+        industrial: 'औद्योगिक',
+      },
+      specs: {
+        capacity: 'क्षमता',
+        material: 'सामग्री',
+        rating: 'अग्नि रेटिंग',
+      },
+      tags: {
+        bestSeller: 'बेस्ट सेलर',
+        carUse: 'कार उपयोग',
+        industrial: 'औद्योगिक',
+        homeUse: 'घर का उपयोग',
+      },
+      features: {
+        eco: { title: 'पर्यावरण के अनुकूल तकनीक', desc: 'पर्यावरण की दृष्टि से सुरक्षित शमन एजेंट।' },
+        protection: { title: 'मल्टी-फायर प्रोटेクション', desc: 'A, B, E, F अग्नि श्रेणियों को कवर करता है।' },
+        portable: { title: 'कॉम्पैक्ट और पोर्टेबल', desc: 'आपात स्थिति में संभालना आसान।' },
+        industrial: { title: 'औद्योगिक ग्रेड', desc: 'अधिकतम प्रदर्शन के लिए निर्मित।' },
       },
     },
     gallery: {
@@ -863,15 +1119,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'การสนับสนุนจากผู้เชี่ยวชาญ',
     },
     products: {
-      title: 'กลุ่มผลิตภัณฑ์ของเรา',
-      desc: 'ออกแบบมาเพื่อความน่าเชื่อถือและประสิทธิภาพในสถานการณ์วิกฤต',
-      items: {
-        abc: { name: 'ถังดับเพลิงผงเคมีแห้ง ABC', desc: 'การป้องกันอัคคีภัยอเนกประสงค์สำหรับไฟประเภท A, B และ C มีให้เลือกหลายขนาด' },
-        co2: { name: 'ถังดับเพลิง CO2', desc: 'เหมาะสำหรับไฟที่เกิดจากไฟฟ้าและความเสี่ยงจากของเหลวไวไฟ ไม่ทิ้งคราบสกปรก' },
-        water: { name: 'ถังดับเพลิงสูตรน้ำ', desc: 'การระบายความร้อนและการดับไฟที่มีประสิทธิภาพสำหรับไฟประเภท A (ไม้ กระดาษ สิ่งทอ)' },
-        foam: { name: 'ถังดับเพลิงชนิดโฟม', desc: 'ยอดเยี่ยมสำหรับไฟจากของเหลวไวไฟประเภท B สร้างฟิล์มปิดผนึก' },
-        stainless: { name: 'ซีรีส์สแตนเลส', desc: 'ถังดับเพลิงทนการกัดกร่อนระดับพรีเมียมสำหรับสภาพแวดล้อมที่รุนแรง' },
-        automatic: { name: 'ถังดับเพลิงอัตโนมัติ', desc: 'ระบบดับเพลิงอัตโนมัติแบบติดตั้งบนเพดานสำหรับพื้นที่ที่ไม่มีคนดูแล' },
+      title: 'โซลูชันความปลอดภัยจากอัคคีภัย',
+      subtitle: 'เครื่องดับเพลิงสูตรน้ำและผงเคมีแห้งที่เป็นมิตรต่อสิ่งแวดล้อม',
+      viewProducts: 'ดูผลิตภัณฑ์',
+      getQuote: 'ขอใบเสนอราคา',
+      categories: {
+        title: 'หมวดหมู่ผลิตภัณฑ์',
+        portable: { title: 'สูตรน้ำแบบพกพา', desc: 'แบบสเปรย์ขนาดเล็กสำหรับรถยนต์และห้องครัว' },
+        mediumLarge: { title: 'สูตรน้ำขนาดกลางและใหญ่', desc: 'สแตนเลสพรีเมียมสำหรับบ้านและสำนักงาน' },
+        dryPowder: { title: 'เครื่องดับเพลิงผงเคมีแห้ง', desc: 'การป้องกันที่หลากหลายสำหรับไฟหลายประเภท' },
+        industrial: { title: 'อุตสาหกรรม / แบบรถเข็น', desc: 'โซลูชันความจุสูงสำหรับการป้องกันงานหนัก' },
+      },
+      filters: {
+        all: 'ผลิตภัณฑ์ทั้งหมด',
+        type: 'ประเภท',
+        capacity: 'ความจุ',
+        useCase: 'การใช้งาน',
+        waterBased: 'สูตรน้ำ',
+        dryPowder: 'ผงเคมีแห้ง',
+        small: 'ขนาดเล็ก (< 1 กก.)',
+        medium: 'ขนาดกลาง (1-6 กก.)',
+        large: 'ขนาดใหญ่ (> 6 กก.)',
+        home: 'บ้าน',
+        car: 'รถยนต์',
+        industrial: 'อุตสาหกรรม',
+      },
+      specs: {
+        capacity: 'ความจุ',
+        material: 'วัสดุ',
+        rating: 'ระดับการดับไฟ',
+      },
+      tags: {
+        bestSeller: 'ขายดีที่สุด',
+        carUse: 'ใช้ในรถยนต์',
+        industrial: 'อุตสาหกรรม',
+        homeUse: 'ใช้ในบ้าน',
+      },
+      features: {
+        eco: { title: 'เทคโนโลยีเป็นมิตรต่อสิ่งแวดล้อม', desc: 'สารดับเพลิงที่ปลอดภัยต่อสิ่งแวดล้อม' },
+        protection: { title: 'การป้องกันไฟหลายประเภท', desc: 'ครอบคลุมไฟประเภท A, B, E, F' },
+        portable: { title: 'กะทัดรัดและพกพาสะดวก', desc: 'ใช้งานง่ายในสถานการณ์ฉุกเฉิน' },
+        industrial: { title: 'เกรดอุตสาหกรรม', desc: 'สร้างขึ้นเพื่อประสิทธิภาพสูงสุด' },
       },
     },
     gallery: {
@@ -968,15 +1256,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'پشتیبانی متخصصان',
     },
     products: {
-      title: 'طیف محصولات ما',
-      desc: 'طراحی شده برای قابلیت اطمینان و عملکرد در شرایط بحرانی.',
-      items: {
-        abc: { name: 'کپسول پودر خشک ABC', desc: 'حفاظت همه‌جانبه برای آتش‌سوزی‌های کلاس A، B و C. موجود در اندازه‌های مختلف.' },
-        co2: { name: 'کپسول آتش‌نشانی CO2', desc: 'ایده‌آل برای آتش‌سوزی‌های الکتریکی و خطرات مایعات قابل اشتعال. بدون باقی‌مانده.' },
-        water: { name: 'کپسول بر پایه آب', desc: 'خنک‌کنندگی و اطفای موثر برای آتش‌سوزی‌های کلاس A (چوب، کاغذ، منسوجات).' },
-        foam: { name: 'کپسول آتش‌نشانی فوم', desc: 'عالی برای آتش‌سوزی مایعات قابل اشتعال کلاس B. ایجاد لایه محافظ.' },
-        stainless: { name: 'سری استیل ضد زنگ', desc: 'کپسول‌های ممتاز مقاوم در برابر خوردگی برای محیط‌های سخت.' },
-        automatic: { name: 'کپسول خودکار', desc: 'سیستم اطفای خودکار سقفی برای مناطق بدون اپراتور.' },
+      title: 'راهکارهای ایمنی آتش‌نشانی',
+      subtitle: 'کپسول‌های آتش‌نشانی پایه آب و پودر خشک سازگار با محیط زیست',
+      viewProducts: 'مشاهده محصولات',
+      getQuote: 'دریافت قیمت',
+      categories: {
+        title: 'دسته‌بندی محصولات',
+        portable: { title: 'پایه آب قابل حمل', desc: 'مدل آئروسل کوچک برای خودرو و آشپزخانه.' },
+        mediumLarge: { title: 'پایه آب متوسط و بزرگ', desc: 'استیل ضد زنگ ممتاز برای خانه و دفتر.' },
+        dryPowder: { title: 'کپسول‌های پودر خشک', desc: 'محافظت چندمنظوره برای انواع مختلف آتش.' },
+        industrial: { title: 'صنعتی / چرخ‌دار', desc: 'راهکارهای با ظرفیت بالا برای محافظت سنگین.' },
+      },
+      filters: {
+        all: 'همه محصولات',
+        type: 'نوع',
+        capacity: 'ظرفیت',
+        useCase: 'مورد استفاده',
+        waterBased: 'پایه آب',
+        dryPowder: 'پودر خشک',
+        small: 'کوچک (< 1kg)',
+        medium: 'متوسط (1-6kg)',
+        large: 'بزرگ (> 6kg)',
+        home: 'خانه',
+        car: 'خودرو',
+        industrial: 'صنعتی',
+      },
+      specs: {
+        capacity: 'ظرفیت',
+        material: 'جنس',
+        rating: 'درجه آتش',
+      },
+      tags: {
+        bestSeller: 'پرفروش‌ترین',
+        carUse: 'استفاده در خودرو',
+        industrial: 'صنعتی',
+        homeUse: 'استفاده خانگی',
+      },
+      features: {
+        eco: { title: 'تکنولوژی سازگار با محیط زیست', desc: 'عوامل اطفاء حریق ایمن برای محیط زیست.' },
+        protection: { title: 'محافظت چندگانه در برابر آتش', desc: 'پوشش کلاس‌های آتش A, B, E, F.' },
+        portable: { title: 'فشرده و قابل حمل', desc: 'کاربری آسان در مواقع اضطراری.' },
+        industrial: { title: 'درجه صنعتی', desc: 'ساخته شده برای حداکثر کارایی.' },
       },
     },
     gallery: {
@@ -1073,15 +1393,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: 'Suporte Especializado',
     },
     products: {
-      title: 'Nossa Linha de Produtos',
-      desc: 'Projetados para confiabilidade e desempenho em situações críticas.',
-      items: {
-        abc: { name: 'Extintor de Pó Químico ABC', desc: 'Proteção versátil para incêndios de Classe A, B e C. Disponível em vários tamanhos.' },
-        co2: { name: 'Extintor de CO2', desc: 'Ideal para incêndios elétricos e riscos de líquidos inflamáveis. Não deixa resíduos.' },
-        water: { name: 'Extintor à Base de Água', desc: 'Resfriamento e extinção eficazes para incêndios de Classe A (madeira, papel, têxteis).' },
-        foam: { name: 'Extintor de Espuma', desc: 'Excelente para incêndios de líquidos inflamáveis de Classe B. Cria uma película de vedação.' },
-        stainless: { name: 'Série em Aço Inoxidável', desc: 'Extintores premium resistentes à corrosão para ambientes severos.' },
-        automatic: { name: 'Extintor Automático', desc: 'Supressão automática montada no teto para áreas não tripuladas.' },
+      title: 'Soluções de Segurança Contra Incêndios',
+      subtitle: 'Extintores Ecológicos à Base de Água e Pó Seco',
+      viewProducts: 'Ver Produtos',
+      getQuote: 'Obter Orçamento',
+      categories: {
+        title: 'Categorias de Produtos',
+        portable: { title: 'Base de Água Portátil', desc: 'Estilo aerossol pequeno para carros e cozinhas.' },
+        mediumLarge: { title: 'Base de Água Médio e Grande', desc: 'Aço inoxidável premium para casa e escritório.' },
+        dryPowder: { title: 'Extintores de Pó Seco', desc: 'Proteção versátil para várias classes de fogo.' },
+        industrial: { title: 'Industrial / Carrinho', desc: 'Soluções de alta capacidade para proteção pesada.' },
+      },
+      filters: {
+        all: 'Todos os Produtos',
+        type: 'Tipo',
+        capacity: 'Capacidade',
+        useCase: 'Uso',
+        waterBased: 'À base de água',
+        dryPowder: 'Pó seco',
+        small: 'Pequeno (< 1kg)',
+        medium: 'Médio (1-6kg)',
+        large: 'Grande (> 6kg)',
+        home: 'Casa',
+        car: 'Carro',
+        industrial: 'Industrial',
+      },
+      specs: {
+        capacity: 'Capacidade',
+        material: 'Material',
+        rating: 'Classe de fogo',
+      },
+      tags: {
+        bestSeller: 'Mais Vendido',
+        carUse: 'Uso Automóvel',
+        industrial: 'Industrial',
+        homeUse: 'Uso Doméstico',
+      },
+      features: {
+        eco: { title: 'Tecnologia Ecológica', desc: 'Agentes seguros para o ambiente.' },
+        protection: { title: 'Proteção Multi-Fogo', desc: 'Cobre as classes A, B, E, F.' },
+        portable: { title: 'Compacto e Portátil', desc: 'Fácil de manusear em emergências.' },
+        industrial: { title: 'Qualidade Industrial', desc: 'Construído para o máximo desempenho.' },
       },
     },
     gallery: {
@@ -1178,15 +1530,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: '专家支持',
     },
     products: {
-      title: '我们的产品范围',
-      desc: '专为关键情况下的可靠性和性能而设计。',
-      items: {
-        abc: { name: 'ABC 干粉灭火器', desc: '适用于 A、B 和 C 类火灾的多功能消防保护。提供多种尺寸。' },
-        co2: { name: '二氧化碳灭火器', desc: '电气火灾和易燃液体风险的理想选择。不留残渣。' },
-        water: { name: '水基灭火器', desc: '对 A 类火灾（木材、纸张、纺织品）有效的冷却和灭火。' },
-        foam: { name: '泡沫灭火器', desc: '非常适合 B 类易燃液体火灾。形成密封膜。' },
-        stainless: { name: '不锈钢系列', desc: '适用于恶劣环境的高级耐腐蚀灭火器。' },
-        automatic: { name: '自动灭火器', desc: '用于无人区域的吸顶式自动灭火系统。' },
+      title: '消防安全解决方案',
+      subtitle: '环保型水基和干粉灭火器',
+      viewProducts: '查看产品',
+      getQuote: '获取报价',
+      categories: {
+        title: '产品类别',
+        portable: { title: '水基便携式', desc: '适用于汽车和厨房的小型气溶胶式。' },
+        mediumLarge: { title: '水基中大型', desc: '适用于家庭和办公室的高级不锈钢材质。' },
+        dryPowder: { title: '干粉灭火器', desc: '适用于多种火灾类别的多功能保护。' },
+        industrial: { title: '工业/推车式', desc: '适用于重型保护的高容量解决方案。' },
+      },
+      filters: {
+        all: '所有产品',
+        type: '类型',
+        capacity: '容量',
+        useCase: '使用场景',
+        waterBased: '水基',
+        dryPowder: '干粉',
+        small: '小型 (< 1kg)',
+        medium: '中型 (1-6kg)',
+        large: '大型 (> 6kg)',
+        home: '家庭',
+        car: '汽车',
+        industrial: '工业',
+      },
+      specs: {
+        capacity: '容量',
+        material: '材质',
+        rating: '灭火等级',
+      },
+      tags: {
+        bestSeller: '畅销款',
+        carUse: '车载',
+        industrial: '工业',
+        homeUse: '家用',
+      },
+      features: {
+        eco: { title: '环保技术', desc: '环境安全型灭火剂。' },
+        protection: { title: '多重火灾保护', desc: '覆盖 A, B, E, F 类火灾。' },
+        portable: { title: '紧凑便携', desc: '紧急情况下易于操作。' },
+        industrial: { title: '工业级', desc: '专为最高性能打造。' },
       },
     },
     gallery: {
@@ -1283,15 +1667,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: '専門家サポート',
     },
     products: {
-      title: '製品ラインナップ',
-      desc: '重要な状況での信頼性とパフォーマンスを追求して設計されています。',
-      items: {
-        abc: { name: 'ABC 粉末消火器', desc: 'クラス A、B、C の火災に対応する汎用性の高い防火。さまざまなサイズをご用意。' },
-        co2: { name: 'CO2 消火器', desc: '電気火災や引火性液体のリスクに最適。残渣を残しません。' },
-        water: { name: '強化液消火器', desc: 'クラス A 火災（木材、纸、繊維）に対して効果的な冷却と消火。' },
-        foam: { name: '機械泡消火器', desc: 'クラス B 引火性液体火災に最適。密閉膜を形成します。' },
-        stainless: { name: 'ステンレスシリーズ', desc: '過酷な環境向けのプレミアムな耐食性消火器。' },
-        automatic: { name: '自動消火装置', desc: '無人エリア向けの天井取付型自動消火システム。' },
+      title: '消防安全ソリューション',
+      subtitle: '環境に優しい強化液＆粉末消火器',
+      viewProducts: '製品を見る',
+      getQuote: '見積もりを依頼',
+      categories: {
+        title: '製品カテゴリー',
+        portable: { title: '強化液ポータブル', desc: '車やキッチンに最適な小型エアゾールタイプ。' },
+        mediumLarge: { title: '强化液中・大型', desc: '家庭やオフィス向けのプレミアムステンレス製。' },
+        dryPowder: { title: '粉末消火器', desc: '複数の火災クラスに対応する汎用性の高い保護。' },
+        industrial: { title: '工業用/大型車輪付', desc: '高負荷な保護のための大容量ソリューション。' },
+      },
+      filters: {
+        all: 'すべての製品',
+        type: 'タイプ',
+        capacity: '容量',
+        useCase: '用途',
+        waterBased: '強化液',
+        dryPowder: '粉末',
+        small: '小型 (< 1kg)',
+        medium: '中型 (1-6kg)',
+        large: '大型 (> 6kg)',
+        home: '家庭用',
+        car: '車載用',
+        industrial: '工業用',
+      },
+      specs: {
+        capacity: '容量',
+        material: '材質',
+        rating: '消火能力単位',
+      },
+      tags: {
+        bestSeller: 'ベストセラー',
+        carUse: '車載用',
+        industrial: '工業用',
+        homeUse: '家庭用',
+      },
+      features: {
+        eco: { title: '環境に優しい技術', desc: '環境に安全な消火剤。' },
+        protection: { title: 'マルチ火災保護', desc: 'A, B, E, F クラスの火災に対応。' },
+        portable: { title: 'コンパクト＆ポータブル', desc: '緊急時でも扱いやすい。' },
+        industrial: { title: '工業グレード', desc: '最高のパフォーマンスを実現。' },
       },
     },
     gallery: {
@@ -1388,15 +1804,47 @@ export const translations: Record<Language, TranslationContent> = {
       support: '전문가 지원',
     },
     products: {
-      title: '제품 라인업',
-      desc: '중요한 상황에서의 신뢰성과 성능을 위해 설계되었습니다.',
-      items: {
-        abc: { name: 'ABC 분말 소화기', desc: 'A, B, C급 화재에 대한 다목적 방화. 다양한 크기 제공.' },
-        co2: { name: 'CO2 소화기', desc: '전기 화재 및 인화성 액체 위험에 이상적. 잔여물이 남지 않음.' },
-        water: { name: '수계 소화기', desc: 'A급 화재(나무, 종이, 섬유)에 대한 효과적인 냉각 및 소화.' },
-        foam: { name: '폼 소화기', desc: 'B급 인화성 액체 화재에 탁월. 밀폐막 형성.' },
-        stainless: { name: '스테인리스 시리즈', desc: '가혹한 환경을 위한 프리미엄 부식 방지 소화기.' },
-        automatic: { name: '자동 소화 장치', desc: '무인 구역을 위한 천장 장착형 자동 억제 시스템.' },
+      title: '소방 안전 솔루션',
+      subtitle: '친환경 수계 및 분말 소화기',
+      viewProducts: '제품 보기',
+      getQuote: '견적 요청',
+      categories: {
+        title: '제품 카테고리',
+        portable: { title: '수계 휴대용', desc: '자동차 및 주방용 소형 에어로졸 스타일.' },
+        mediumLarge: { title: '수계 중대형', desc: '가정 및 사무실용 프리미엄 스테인리스 스틸.' },
+        dryPowder: { title: '분말 소화기', desc: '다양한 화재 등급에 대한 다목적 보호.' },
+        industrial: { title: '산업용 / 트롤리', desc: '고성능 보호를 위한 대용량 솔루션.' },
+      },
+      filters: {
+        all: '모든 제품',
+        type: '유형',
+        capacity: '용량',
+        useCase: '용도',
+        waterBased: '수계',
+        dryPowder: '분말',
+        small: '소형 (< 1kg)',
+        medium: '중형 (1-6kg)',
+        large: '대형 (> 6kg)',
+        home: '가정용',
+        car: '차량용',
+        industrial: '산업용',
+      },
+      specs: {
+        capacity: '용량',
+        material: '재질',
+        rating: '화재 등급',
+      },
+      tags: {
+        bestSeller: '베스트셀러',
+        carUse: '차량용',
+        industrial: '산업용',
+        homeUse: '가정용',
+      },
+      features: {
+        eco: { title: '친환경 기술', desc: '환경적으로 안전한 소화 약제.' },
+        protection: { title: '다중 화재 보호', desc: 'A, B, E, F 화재 등급 커버.' },
+        portable: { title: '컴팩트 & 휴대용', desc: '비상시 취급 용이.' },
+        industrial: { title: '산업 등급', desc: '최고의 성능을 위해 제작.' },
       },
     },
     gallery: {
