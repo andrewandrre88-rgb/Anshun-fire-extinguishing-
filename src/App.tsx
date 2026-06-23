@@ -123,9 +123,12 @@ export default function App() {
             <img 
               src="https://github.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/blob/main/file_00000000866472089adb0f473d58b50b.png.jpg?raw=true" 
               alt="Anshun Logo" 
-              className="h-10 w-10 rounded-lg object-cover bg-red-50 p-0.5 shadow-sm" 
+              className="h-10 w-auto object-contain" 
               referrerPolicy="no-referrer"
             />
+            <span className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+              ANSHUN <span className="text-red-600">FIRE</span>
+            </span>
           </div>
           <div className="hidden items-center gap-6 md:flex">
             <div className="flex items-center gap-2 border-r border-gray-100 pr-6 mr-2">
@@ -652,7 +655,7 @@ export default function App() {
               <img 
                 src="https://github.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/blob/main/file_00000000866472089adb0f473d58b50b.png.jpg?raw=true" 
                 alt="Anshun Logo" 
-                className="h-8 w-8 rounded-lg object-cover bg-red-50 p-0.5 shadow-sm" 
+                className="h-8 w-auto object-contain" 
                 referrerPolicy="no-referrer"
               />
               <span className="text-lg font-bold tracking-tight text-gray-900">
