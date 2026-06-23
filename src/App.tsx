@@ -117,11 +117,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-red-100 selection:text-red-600">
       {/* Navigation */}
-      <nav className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <nav className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-lg shadow-sm">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <img 
-              src="https://github.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/blob/main/file_00000000866472089adb0f473d58b50b.png.jpg?raw=true" 
+              src="https://raw.githubusercontent.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/main/file_00000000866472089adb0f473d58b50b.png.jpg" 
               alt="Anshun Logo" 
               className="h-10 w-auto object-contain" 
               referrerPolicy="no-referrer"
@@ -279,53 +279,101 @@ export default function App() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://lh3.googleusercontent.com/d/1ZpePT0qem7IjP2uWS_BijVOPkubVEow7"
-            alt="Factory Background"
-            className="h-full w-full object-cover opacity-10"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white" />
-        </div>
+      {/* Hero / Landing Section */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-24 pb-16 bg-white">
+        {/* Subtle decorative background pattern */}
+        <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-gray-50/50 to-transparent pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-gray-50/30 to-transparent pointer-events-none hidden lg:block" />
         
-        <div className="relative z-10 mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block rounded-full bg-red-50 px-4 py-1.5 text-sm font-semibold tracking-wide text-red-600 uppercase">
-              {t.hero.companyName}
-            </span>
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-gray-900 sm:text-6xl lg:text-7xl">
-              {t.hero.title} <br />
-              <span className="text-red-600">{t.hero.titleHighlight}</span>
-            </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-lg text-gray-600 sm:text-xl">
-              {t.hero.description}
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="#products"
-                className="group inline-flex items-center justify-center gap-2 rounded-full bg-gray-900 px-8 py-4 text-lg font-bold text-white transition-all hover:bg-gray-800 hover:shadow-xl active:scale-95"
-              >
-                {t.hero.viewProducts}
-                <ArrowRight className={cn("transition-transform", lang === 'ar' ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1")} size={20} />
-              </a>
-              <a
-                href="https://wa.me/8615257027383"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-gray-200 bg-white px-8 py-4 text-lg font-bold text-gray-900 transition-all hover:border-red-600 hover:text-red-600 active:scale-95"
-              >
-                <Phone size={20} />
-                {t.hero.contactSales}
-              </a>
-            </div>
-          </motion.div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            {/* Left Content Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="lg:col-span-7 text-left flex flex-col justify-center"
+            >
+              {/* Premium Badge */}
+              <div className="flex items-center gap-2 mb-6">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-red-600 bg-red-50 rounded-full border border-red-100/50">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+                  {t.hero.companyName}
+                </span>
+              </div>
+              
+              {/* Heading */}
+              <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.1]">
+                {t.hero.title}
+                <span className="block mt-3 text-red-600 font-black">
+                  {t.hero.titleHighlight}
+                </span>
+              </h1>
+              
+              {/* Description */}
+              <p className="mt-8 text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
+                {t.hero.description}
+              </p>
+              
+              {/* Call to Actions */}
+              <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">
+                <a
+                  href="#products"
+                  className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-red-600 px-8 py-4 text-base sm:text-lg font-bold text-white transition-all hover:bg-red-700 hover:shadow-lg active:scale-95"
+                >
+                  {t.hero.viewProducts}
+                  <ArrowRight className={cn("transition-transform", lang === 'ar' ? "group-hover:-translate-x-1 rotate-180" : "group-hover:translate-x-1")} size={20} />
+                </a>
+                <a
+                  href="https://wa.me/8615257027383"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border-2 border-gray-200 bg-white px-8 py-4 text-base sm:text-lg font-bold text-gray-900 transition-all hover:border-red-600 hover:text-red-600 active:scale-95"
+                >
+                  <Phone size={20} />
+                  {t.hero.contactSales}
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Right Interactive Visual Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              className="lg:col-span-5 relative flex justify-center"
+            >
+              <div className="relative w-full max-w-lg aspect-[4/5] rounded-[2.5rem] bg-gray-100 p-3 shadow-xl ring-1 ring-gray-900/5">
+                {/* Decorative graphic backdrop shadows */}
+                <div className="absolute -inset-1 rounded-[2.75rem] bg-gradient-to-tr from-gray-200 to-red-100/30 blur-2xl -z-10" />
+                
+                <div className="relative h-full w-full overflow-hidden rounded-[2rem] bg-white border border-gray-100">
+                  {/* Factory Showcase Background */}
+                  <img
+                    src="https://lh3.googleusercontent.com/d/1ZpePT0qem7IjP2uWS_BijVOPkubVEow7"
+                    alt="Zhejiang Anshun Factory Base"
+                    className="h-full w-full object-cover grayscale-[10%] hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  
+                  {/* Elegant Glassmorphic Brand Stamp overlay */}
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md p-5 rounded-2xl border border-white/50 shadow-lg flex items-center gap-4">
+                    <img 
+                      src="https://raw.githubusercontent.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/main/file_00000000866472089adb0f473d58b50b.png.jpg" 
+                      alt="Anshun Official Logo" 
+                      className="h-12 w-auto object-contain flex-shrink-0"
+                      referrerPolicy="no-referrer"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-bold text-red-600 uppercase tracking-widest">{t.hero.companyName ? "ZHEJIANG ANSHUN" : "ANSHUN"}</p>
+                      <h4 className="text-sm font-extrabold text-gray-900 mt-0.5 truncate uppercase">Anshun Fire Technology</h4>
+                      <p className="text-[10px] text-gray-500 font-medium">ISO9001 • CE Certified Production Base</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -653,7 +701,7 @@ export default function App() {
           <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
             <div className="flex items-center gap-3">
               <img 
-                src="https://github.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/blob/main/file_00000000866472089adb0f473d58b50b.png.jpg?raw=true" 
+                src="https://raw.githubusercontent.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/main/file_00000000866472089adb0f473d58b50b.png.jpg" 
                 alt="Anshun Logo" 
                 className="h-8 w-auto object-contain" 
                 referrerPolicy="no-referrer"
@@ -710,13 +758,16 @@ export default function App() {
       </footer>
       {/* Floating WhatsApp Button */}
       <a
+        id="floating-whatsapp-btn"
         href="https://wa.me/8615257027383"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all hover:scale-110 hover:bg-[#128C7E] active:scale-95"
         aria-label="Chat on WhatsApp"
       >
-        <MessageCircle size={32} fill="currentColor" className="text-white" />
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.858.002-2.634-1.013-5.111-2.86-6.961C16.632 1.94 14.156.92 11.517.92 6.082.92 1.66 5.34 1.657 10.781c-.001 1.745.452 3.447 1.312 4.961l-.986 3.601 3.69-.968L6.647 19.1l.001.054zM16.95 14.19c-.295-.148-1.748-.862-2.016-.962-.269-.098-.464-.148-.659.148-.195.297-.757.962-.928 1.159-.17.199-.341.222-.636.074-.294-.148-1.245-.459-2.37-1.464-.875-.78-1.466-1.744-1.637-2.04-.17-.297-.018-.458.13-.605.132-.132.296-.347.444-.52.149-.173.197-.297.296-.496.1-.198.05-.371-.025-.52-.075-.148-.659-1.591-.902-2.176-.237-.57-.497-.491-.659-.499-.17-.008-.366-.01-.562-.01-.195 0-.513.073-.781.372-.269.297-1.025 1.001-1.025 2.441 0 1.439 1.047 2.829 1.194 3.027.147.198 2.062 3.149 4.996 4.413.698.301 1.243.481 1.668.616.702.224 1.341.192 1.846.117.563-.083 1.748-.714 1.993-1.402.245-.688.245-1.277.172-1.402-.073-.125-.27-.199-.565-.347z" />
+        </svg>
         <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-600 text-[10px] font-bold text-white animate-bounce">
           1
         </span>

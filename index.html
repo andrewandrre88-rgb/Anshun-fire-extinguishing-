@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Zhejiang Anshun Fire Fighting Technology Co., Ltd.</title>
+    <script>
+      window.addEventListener('error', function(event) {
+        if (event.message === 'Script error.' || !event.filename || event.filename.indexOf(window.location.origin) === -1) {
+          // Suppress cross-origin / extension errors that cause benign Script error reports
+          event.stopImmediatePropagation();
+          event.preventDefault();
+          return;
+        }
+        console.error('Global Error caught:', event.error || event.message);
+      });
+      window.addEventListener('unhandledrejection', function(event) {
+        console.error('Unhandled Promise Rejection:', event.reason);
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,5 +1,6 @@
 {
   "name": "Zhejiang Anshun Fire Fighting Technology",
   "description": "Landing page for Zhejiang Anshun Fire Fighting Technology Co., Ltd. - Professional fire fighting equipment and solutions.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
