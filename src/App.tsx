@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Phone, Mail, MapPin, Shield, Flame, CheckCircle, ArrowRight, MessageCircle, Globe, Menu, X, Facebook, Twitter, Instagram, Linkedin, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Shield, Flame, CheckCircle, ArrowRight, MessageCircle, Globe, Menu, X, Facebook, Twitter, Instagram, Linkedin, Youtube, Sun, Moon } from 'lucide-react';
 import { cn } from './lib/utils';
 import { translations, Language } from './translations';
 
@@ -8,6 +8,20 @@ export default function App() {
   const [lang, setLang] = useState<Language>('en');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+    }
+    return 'light';
+  });
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+  };
+
   const t = translations[lang];
 
   useEffect(() => {
@@ -115,28 +129,31 @@ export default function App() {
     t.testimonials.items.client3,
   ];
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-red-100 selection:text-red-600">
+    <div className={cn(
+      "min-h-screen bg-white font-sans text-gray-900 selection:bg-red-100 selection:text-red-600 transition-colors duration-300",
+      theme === "dark" ? "dark-theme" : ""
+    )}>
       {/* Navigation */}
       <nav className="fixed top-0 z-50 w-full border-b border-gray-100 bg-white/90 backdrop-blur-lg shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <img 
               src="https://raw.githubusercontent.com/andrewandrre88-rgb/Anshun-fire-fighting-techology-images/main/file_00000000866472089adb0f473d58b50b.png.jpg" 
               alt="Anshun Logo" 
-              className="h-10 w-auto object-contain" 
+              className="h-8 min-[400px]:h-10 w-auto object-contain" 
               referrerPolicy="no-referrer"
             />
-            <span className="text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
+            <span className="text-base min-[400px]:text-lg sm:text-xl font-bold tracking-tight text-gray-900 sm:text-2xl">
               ANSHUN <span className="text-red-600">FIRE</span>
             </span>
           </div>
-          <div className="hidden items-center gap-6 md:flex">
-            <div className="flex items-center gap-2 border-r border-gray-100 pr-6 mr-2">
-              <Globe size={16} className="text-gray-400" />
+          <div className="hidden items-center md:gap-4 lg:gap-6 md:flex">
+            <div className="flex items-center gap-1.5 border-r border-gray-100 pr-4 mr-1 lg:pr-6 lg:mr-2">
+              <Globe size={15} className="text-gray-400" />
               <select 
                 value={lang}
                 onChange={(e) => setLang(e.target.value as Language)}
-                className="bg-transparent text-sm font-medium text-gray-600 outline-none cursor-pointer hover:text-red-600"
+                className="bg-transparent text-xs lg:text-sm font-medium text-gray-600 outline-none cursor-pointer hover:text-red-600"
               >
                 <option value="en">English</option>
                 <option value="es">Español</option>
@@ -153,34 +170,53 @@ export default function App() {
                 <option value="ko">한국어</option>
               </select>
             </div>
-            <a href="#about" className="text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.about}</a>
-            <a href="#products" className="text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.products}</a>
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-red-600 transition-colors cursor-pointer mr-2"
+              aria-label="Toggle Theme"
+            >
+              {theme === "light" ? <Moon size={18} /> : <Sun size={18} />}
+            </button>
+            <a href="#about" className="text-xs lg:text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.about}</a>
+            <a href="#products" className="text-xs lg:text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.products}</a>
             <a 
               href="https://drive.google.com/file/d/1QJ114itNlZKAy974tEWBtDuwWu0mhsdB/view?usp=sharing" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-red-600"
+              className="text-xs lg:text-sm font-medium text-gray-600 transition-colors hover:text-red-600"
             >
               {t.nav.catalog}
             </a>
-            <a href="#contact" className="text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.contact}</a>
+            <a href="#contact" className="text-xs lg:text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.contact}</a>
             <a
               href="https://wa.me/8615257027383"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-red-600 px-6 py-2.5 text-sm font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg active:scale-95"
+              className="inline-flex items-center justify-center rounded-full bg-red-600 px-4 py-2 lg:px-6 lg:py-2.5 text-xs lg:text-sm font-semibold text-white transition-all hover:bg-red-700 hover:shadow-lg active:scale-95"
             >
               {t.nav.getQuote}
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button 
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="flex items-center gap-1 md:hidden">
+            {/* Mobile Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100 mr-1"
+              aria-label="Toggle Theme"
+            >
+              {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button 
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-gray-600 hover:bg-gray-100"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu Overlay */}
@@ -189,7 +225,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute inset-x-0 top-full border-b border-gray-100 bg-white p-6 shadow-xl md:hidden"
+            className="absolute inset-x-0 top-full max-h-[calc(100vh-4rem)] overflow-y-auto border-b border-gray-100 bg-white p-6 shadow-xl md:hidden"
           >
             <div className="flex flex-col gap-6">
               <div className="flex items-center justify-between border-b border-gray-100 pb-4">

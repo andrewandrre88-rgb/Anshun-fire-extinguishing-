@@ -1,1 +1,127 @@
 @import "tailwindcss";
+
+/* Modern, high-fidelity dark mode theme selector overrides */
+.dark-theme {
+  background-color: #0d111d !important;
+  color: #f8fafc !important;
+  
+  /* Apply selection highlights for dark mode */
+  ::selection {
+    background-color: #991b1b !important;
+    color: #ffffff !important;
+  }
+
+  /* Overwrite section and global element backgrounds */
+  &.bg-white,
+  .bg-white {
+    background-color: #0d111d !important;
+  }
+  
+  /* Semi-transparent/frosted overlays */
+  .bg-white\/90 {
+    background-color: rgba(13, 17, 29, 0.9) !important;
+  }
+  
+  .bg-white\/80 {
+    background-color: rgba(13, 17, 29, 0.8) !important;
+  }
+
+  /* Gray backgrounds to elevate surfaces (bento box styling) */
+  .bg-gray-50,
+  .bg-gray-50\/50 {
+    background-color: #161b26 !important;
+  }
+  
+  .bg-gray-100,
+  .bg-gray-200 {
+    background-color: #212836 !important;
+  }
+
+  /* Custom styling for card structures to have a glass/elevated surface */
+  .rounded-3xl.bg-white,
+  .rounded-2xl.bg-white {
+    background-color: #141925 !important;
+    border-color: #212836 !important;
+  }
+  
+  /* Text transformations */
+  .text-gray-900,
+  .text-slate-900 {
+    color: #f8fafc !important;
+  }
+  
+  .text-gray-800 {
+    color: #f1f5f9 !important;
+  }
+
+  .text-gray-700,
+  .text-gray-600 {
+    color: #cbd5e1 !important;
+  }
+
+  .text-gray-500,
+  .text-gray-400 {
+    color: #94a3b8 !important;
+  }
+
+  /* Subtle border overrides */
+  .border-gray-50,
+  .border-gray-100,
+  .border-gray-200 {
+    border-color: #212836 !important;
+  }
+
+  /* Form & inputs */
+  input,
+  textarea,
+  select,
+  .bg-gray-50.px-4.py-3 {
+    background-color: #1a202c !important;
+    color: #f8fafc !important;
+    border-color: #2d3748 !important;
+  }
+  
+  option {
+    background-color: #141925 !important;
+    color: #f8fafc !important;
+  }
+
+  /* Mobile menu specifics */
+  .border-b.border-gray-100.bg-white {
+    background-color: #0d111d !important;
+    border-color: #1e293b !important;
+  }
+
+  /* Overwrite shadows for darker profiles */
+  .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5) !important;
+  }
+  .shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3) !important;
+  }
+  .shadow-lg {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4) !important;
+  }
+  .shadow-xl {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.4) !important;
+  }
+  .shadow-2xl {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  /* Custom Hover state refinements */
+  .hover\:bg-gray-100:hover {
+    background-color: #212836 !important;
+  }
+  
+  /* Red/gray contact layout background */
+  #contact.bg-gray-900 {
+    background-color: #090c15 !important;
+  }
+  
+  /* Footer styles */
+  footer.bg-white {
+    background-color: #090c15 !important;
+    border-color: #161b26 !important;
+  }
+}
