@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Phone, Mail, MapPin, Shield, Flame, CheckCircle, ArrowRight, MessageCircle, Globe, Menu, X, Facebook, Twitter, Instagram, Linkedin, Youtube, Sun, Moon } from 'lucide-react';
 import { cn } from './lib/utils';
 import { translations, Language } from './translations';
@@ -7,6 +7,8 @@ import { translations, Language } from './translations';
 export default function App() {
   const [lang, setLang] = useState<Language>('en');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSocialOpen, setIsSocialOpen] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [expandedTestimonial, setExpandedTestimonial] = useState<number | null>(null);
   const [theme, setTheme] = useState<'light' | 'dark'>(() => {
     if (typeof window !== 'undefined') {
@@ -23,6 +25,237 @@ export default function App() {
   };
 
   const t = translations[lang];
+
+  const socialNavLabel = {
+    en: 'Social Connect',
+    es: 'Redes Sociales',
+    ru: 'Соцсети',
+    ar: 'التواصل الاجتماعي',
+    fr: 'Réseaux Sociaux',
+    vi: 'Mạng xã hội',
+    hi: 'सोशल मीडिया',
+    th: 'โซเชียลมีเดีย',
+    fa: 'شبکه‌های اجتماعی',
+    pt: 'Redes Sociais',
+    zh: '社交联络',
+    ja: 'ソーシャル連携',
+    ko: '소셜 채널'
+  }[lang] || 'Social Connect';
+
+  const socialTranslations = {
+    en: {
+      title: "Official Social Accounts",
+      subtitle: "Stay updated with our latest fire fighting equipment releases, global projects, and industrial safety tips.",
+      verified: "Official Account",
+      join: "Visit Official Profile",
+      response: "Active response",
+      copySuccess: "Link copied to clipboard!",
+      share: "Share Profile"
+    },
+    es: {
+      title: "Cuentas Oficiales de Redes",
+      subtitle: "Manténgase al día con nuestros lanzamientos de equipos de bomberos, proyectos globales y consejos de seguridad.",
+      verified: "Cuenta Oficial",
+      join: "Visitar Perfil Oficial",
+      response: "Respuesta activa",
+      copySuccess: "¡Enlace copiado al portapapeles!",
+      share: "Compartir Perfil"
+    },
+    ru: {
+      title: "Официальные соцсети",
+      subtitle: "Будьте в курсе наших последних выпусков противопожарного оборудования, мировых проектов и советов по безопасности.",
+      verified: "Официальный аккаунт",
+      join: "Перейти в профиль",
+      response: "Активный отклик",
+      copySuccess: "Ссылка скопирована в буфер обмена!",
+      share: "Поделиться профилем"
+    },
+    ar: {
+      title: "الحسابات الرسمية للتواصل الاجتماعي",
+      subtitle: "تابع أحدث إصداراتنا من معدات مكافحة الحرائق، ومشاريعنا العالمية، ونصائح السلامة الصناعية.",
+      verified: "الحساب الرسمي",
+      join: "زيارة الملف الشخصي الرسمي",
+      response: "استجابة نشطة",
+      copySuccess: "تم نسخ الرابط إلى الحافظة!",
+      share: "مشاركة الملف"
+    },
+    fr: {
+      title: "Comptes Sociaux Officiels",
+      subtitle: "Restez informé de nos derniers équipements de lutte contre l'incendie, de nos projets mondiaux et de nos conseils de sécurité.",
+      verified: "Compte Officiel",
+      join: "Visiter le Profil Officiel",
+      response: "Réponse active",
+      copySuccess: "Lien copié dans le presse-papiers !",
+      share: "Partager le Profil"
+    },
+    vi: {
+      title: "Tài khoản mạng xã hội chính thức",
+      subtitle: "Cập nhật các sản phẩm thiết bị phòng cháy chữa cháy mới nhất, dự án toàn cầu và mẹo an toàn công nghiệp.",
+      verified: "Tài khoản chính thức",
+      join: "Truy cập hồ sơ chính thức",
+      response: "Phản hồi tích cực",
+      copySuccess: "Đã sao chép liên kết vào bộ nhớ tạm!",
+      share: "Chia sẻ hồ sơ"
+    },
+    hi: {
+      title: "आधिकारिक सोशल मीडिया खाते",
+      subtitle: "हमारे नए अग्निशामक उपकरणों, वैश्विक परियोजनाओं और औद्योगिक सुरक्षा युक्तियों से अपडेट रहें।",
+      verified: "आधिकारिक खाता",
+      join: "आधिकारिक प्रोफ़ाइल पर जाएं",
+      response: "सक्रिय प्रतिक्रिया",
+      copySuccess: "लिंक क्लिपबोर्ड पर कॉपी किया गया!",
+      share: "प्रोफ़ाइल साझा करें"
+    },
+    th: {
+      title: "บัญชีโซเชียลมีเดียอย่างเป็นทางการ",
+      subtitle: "ติดตามข้อมูลล่าสุดเกี่ยวกับการเปิดตัวอุปกรณ์ดับเพลิง โครงการระดับโลก และคำแนะนำด้านความปลอดภัย",
+      verified: "บัญชีอย่างเป็นทางการ",
+      join: "เยี่ยมชมโปรไฟล์อย่างเป็นทางการ",
+      response: "การตอบสนองที่รวดเร็ว",
+      copySuccess: "คัดลอกลิงก์ไปยังคลิปบอร์ดแล้ว!",
+      share: "แชร์โปรไฟล์"
+    },
+    fa: {
+      title: "حساب‌های رسمی شبکه‌های اجتماعی",
+      subtitle: "همیشه از آخرین تجهیزات آتش‌نشانی، پروژه‌های جهانی و نکات ایمنی صنعتی ما باخبر باشید.",
+      verified: "حساب رسمی",
+      join: "مشاهده پروفایل رسمی",
+      response: "پاسخگویی فعال",
+      copySuccess: "لینک کپی شد!",
+      share: "اشتراک‌گذاری پروفایل"
+    },
+    pt: {
+      title: "Contas Oficiais de Redes Sociais",
+      subtitle: "Mantenha-se atualizado com nossos lançamentos de equipamentos de combate a incêndios, projetos globais e dicas de segurança.",
+      verified: "Conta Oficial",
+      join: "Visitar Perfil Oficial",
+      response: "Resposta ativa",
+      copySuccess: "Link copiado para a área de transferência!",
+      share: "Compartilhar Perfil"
+    },
+    zh: {
+      title: "官方社交媒体账号",
+      subtitle: "获取最新的消防设备发布、全球合作项目和工业安全知识分享。",
+      verified: "官方认证账号",
+      join: "访问官方主页",
+      response: "极速响应中",
+      copySuccess: "链接已成功复制到剪贴板！",
+      share: "分享主页"
+    },
+    ja: {
+      title: "公式ソーシャルアカウント",
+      subtitle: "最新の消火設備リリース、グローバルプロジェクト、産業安全のアドバイスを常にお届けします。",
+      verified: "公式アカウント",
+      join: "公式プロフィールを訪問",
+      response: "アクティブな対応",
+      copySuccess: "リンクがクリップボードにコピーされました！",
+      share: "プロフィールを共有"
+    },
+    ko: {
+      title: "공식 소셜 미디어 채널",
+      subtitle: "최신 소방 장비 출시 소식, 글로벌 프로젝트 및 산업 안전 팁을 확인하고 언제든 소통하세요.",
+      verified: "공식 인증 계정",
+      join: "공식 프로필 방문",
+      response: "빠른 피드백 제공",
+      copySuccess: "클립보드에 링크가 복사되었습니다!",
+      share: "프로필 공유"
+    }
+  }[lang] || {
+    title: "Official Social Accounts",
+    subtitle: "Stay updated with our latest fire fighting equipment releases, global projects, and industrial safety tips.",
+    verified: "Official Account",
+    join: "Visit Official Profile",
+    response: "Active response",
+    copySuccess: "Link copied to clipboard!",
+    share: "Share Profile"
+  };
+
+  const socialAccounts = [
+    {
+      id: 'facebook',
+      name: 'Facebook',
+      handle: 'Anshun Fire Fighting Technology',
+      url: 'https://facebook.com/anshunfire',
+      badge: socialTranslations.verified,
+      desc: lang === 'zh'
+        ? '获取我们阀门、灭火器和展会动态的每日资讯。'
+        : 'Daily updates on fire safety solutions, high-grade brass cylinder valves, and trading events.',
+      followers: '5.2k Followers',
+      icon: Facebook,
+      color: 'text-[#1877F2]'
+    },
+    {
+      id: 'linkedin',
+      name: 'LinkedIn',
+      handle: 'Zhejiang Anshun Fire Fighting Technology Co., Ltd.',
+      url: 'https://linkedin.com/company/anshunfire',
+      badge: socialTranslations.verified,
+      desc: lang === 'zh'
+        ? '与我们全球的贸易官员、采购专家建立联系。'
+        : 'Connect with our global B2B trade division, logistics managers, and sourcing experts.',
+      followers: '3.4k Sourcing Officers',
+      icon: Linkedin,
+      color: 'text-[#0A66C2]'
+    },
+    {
+      id: 'youtube',
+      name: 'YouTube',
+      handle: 'Anshun Fire Tech Official',
+      url: 'https://youtube.com/@anshunfire',
+      badge: 'Product Demos',
+      desc: lang === 'zh'
+        ? '观看压力测试、耐火测试及全自动化工厂生产线。'
+        : 'High-definition video tours of our automated robotics casting line and extreme high-pressure safety testing.',
+      followers: '2.5k Subscribed',
+      icon: Youtube,
+      color: 'text-[#FF0000]'
+    },
+    {
+      id: 'instagram',
+      name: 'Instagram',
+      handle: 'anshun_firetech',
+      url: 'https://instagram.com/anshunfire',
+      badge: 'Visual Showcase',
+      desc: lang === 'zh'
+        ? '高精度黄铜阀门及精密消防喷头的美学展示。'
+        : 'Behind-the-scenes engineering design, precision-milled red-finished valves, and factory floor high-resolution shots.',
+      followers: '1.8k Active Followers',
+      icon: Instagram,
+      color: 'text-[#E1306C]'
+    },
+    {
+      id: 'twitter',
+      name: 'X (Twitter)',
+      handle: '@AnshunFire',
+      url: 'https://twitter.com/anshunfire',
+      badge: 'Instant Safety Alerts',
+      desc: lang === 'zh'
+        ? '发布国际出口、技术标准及物流交付信息。'
+        : 'Direct manufacturer updates, custom brass raw materials cost trends, and standard safety regulation announcements.',
+      followers: '1.2k Industrialist Readers',
+      icon: Twitter,
+      color: 'text-[#e5e7eb] dark:text-[#f3f4f6]'
+    },
+    {
+      id: 'whatsapp',
+      name: 'WhatsApp Support',
+      handle: 'Export Manager (Andrew)',
+      url: 'https://wa.me/8615257027383',
+      badge: 'Online Support • 24/7',
+      desc: lang === 'zh'
+        ? '与大中华区出口总监直接交谈，极速报价。'
+        : 'Chat instantly. Send drawings, specifications, and receive pricing proposals in under 15 minutes.',
+      followers: 'Highly Responsive',
+      icon: MessageCircle,
+      color: 'text-[#25D366]'
+    }
+  ];
+
+  const copyToClipboard = (id: string, text: string) => {
+    navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   useEffect(() => {
     document.documentElement.dir = (lang === 'ar' || lang === 'fa') ? 'rtl' : 'ltr';
@@ -188,6 +421,12 @@ export default function App() {
             >
               {t.nav.catalog}
             </a>
+            <button 
+              onClick={() => setIsSocialOpen(true)}
+              className="text-xs lg:text-sm font-medium text-gray-600 transition-colors hover:text-red-600 focus:outline-none cursor-pointer text-left"
+            >
+              {socialNavLabel}
+            </button>
             <a href="#contact" className="text-xs lg:text-sm font-medium text-gray-600 transition-colors hover:text-red-600">{t.nav.contact}</a>
             <a
               href="https://wa.me/8615257027383"
@@ -276,6 +515,15 @@ export default function App() {
               >
                 {t.nav.catalog}
               </a>
+              <button 
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setIsSocialOpen(true);
+                }}
+                className="text-left text-lg font-semibold text-gray-900 transition-colors hover:text-red-600 focus:outline-none cursor-pointer"
+              >
+                {socialNavLabel}
+              </button>
               <a 
                 href="#contact" 
                 className="text-lg font-semibold text-gray-900 transition-colors hover:text-red-600"
@@ -808,6 +1056,132 @@ export default function App() {
           1
         </span>
       </a>
+
+      {/* Social Accounts Overlay Modal */}
+      <AnimatePresence>
+        {isSocialOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4 backdrop-blur-md overflow-hidden"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative flex h-full max-h-[85vh] w-full max-w-4xl flex-col rounded-3xl bg-white p-6 shadow-2xl dark:bg-[#131926] border border-gray-100 dark:border-gray-800"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setIsSocialOpen(false)}
+                className="absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-red-600 hover:text-white dark:bg-[#1a202c] dark:text-gray-400 dark:hover:bg-red-600 dark:hover:text-white transition-colors cursor-pointer z-10"
+                aria-label="Close"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Header */}
+              <div className="mb-6 flex flex-col">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="inline-flex items-center rounded-full bg-red-50 px-2.5 py-0.5 text-xs font-semibold text-red-600 dark:bg-red-950/40 dark:text-red-400">
+                    <CheckCircle size={12} className="mr-1 inline animate-pulse" /> ANSHUN OFFICIAL
+                  </span>
+                </div>
+                <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-3xl">
+                  {socialTranslations.title}
+                </h2>
+                <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                  {socialTranslations.subtitle}
+                </p>
+              </div>
+
+              {/* Scrollable Container */}
+              <div className="flex-1 overflow-y-auto pr-2 pb-2 custom-scrollbar">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {socialAccounts.map((account) => {
+                    const IconComp = account.icon;
+                    return (
+                      <motion.div
+                        key={account.id}
+                        whileHover={{ y: -4, scale: 1.01 }}
+                        className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-gray-50/50 p-5 transition-all hover:border-gray-200 hover:shadow-lg dark:border-[#212836] dark:bg-[#1a202c]/50"
+                      >
+                        <div>
+                          {/* Logo and Badge Header */}
+                           <div className="flex items-center justify-between mb-3">
+                             <div className={cn("p-2 rounded-xl bg-white shadow-sm dark:bg-[#131926] group-hover:scale-110 transition-transform", account.color)}>
+                               <IconComp size={22} fill={account.id !== 'whatsapp' && account.id !== 'twitter' ? "currentColor" : "none"} />
+                             </div>
+                             <span className="text-[10.5px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider bg-gray-100 dark:bg-[#212836] px-2 py-0.5 rounded-md">
+                               {account.badge}
+                             </span>
+                           </div>
+
+                           <h3 className="text-base font-bold text-gray-900 dark:text-white group-hover:text-red-600 transition-colors">
+                             {account.name}
+                           </h3>
+                           <p className="text-[11px] font-medium text-gray-400 dark:text-gray-500 mb-2 truncate">
+                             {account.handle}
+                           </p>
+                           <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-3 leading-relaxed mb-4">
+                             {account.desc}
+                           </p>
+                         </div>
+
+                         <div>
+                           {/* Metric */}
+                           <div className="text-[11px] font-bold text-gray-400 dark:text-gray-500 mb-3 flex items-center">
+                             <span className="h-1.5 w-1.5 rounded-full bg-green-500 mr-2 inline-block animate-pulse"></span>
+                             {account.followers}
+                           </div>
+
+                           {/* Action Panel */}
+                           <div className="flex gap-2">
+                             <a
+                               href={account.url}
+                               target="_blank"
+                               rel="noopener noreferrer"
+                               className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-xl bg-red-600 px-3 py-2 text-xs font-bold text-white transition-all hover:bg-red-700 active:scale-95 animate-transition"
+                             >
+                               <span>{socialTranslations.join.split(' ')[0]}</span>
+                               <ArrowRight size={12} />
+                             </a>
+                             <button
+                               onClick={() => copyToClipboard(account.id, account.url)}
+                               className="inline-flex h-8 w-8 items-center justify-center rounded-xl border border-gray-200 bg-white text-gray-500 hover:border-red-600 hover:text-red-600 dark:border-[#212836] dark:bg-[#131926] dark:text-gray-400 dark:hover:border-red-600 dark:hover:text-red-600 transition-all active:scale-95 cursor-pointer"
+                               title={socialTranslations.share}
+                             >
+                               {copiedId === account.id ? (
+                                 <span className="text-[10px] font-bold text-green-600">✓</span>
+                               ) : (
+                                 <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                   <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
+                                   <polyline points="16 6 12 2 8 6"></polyline>
+                                   <line x1="12" y1="2" x2="12" y2="15"></line>
+                                 </svg>
+                               )}
+                             </button>
+                           </div>
+                         </div>
+                       </motion.div>
+                     );
+                   })}
+                 </div>
+               </div>
+
+               {/* Toast Feedback */}
+               {copiedId && (
+                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white rounded-full px-4 py-2 text-xs shadow-lg flex items-center gap-2 animate-bounce dark:bg-white dark:text-gray-900 border border-white/10">
+                   <span className="w-1.5 h-1.5 rounded-full bg-green-500 inline-block"></span>
+                   {socialTranslations.copySuccess}
+                 </div>
+               )}
+             </motion.div>
+           </motion.div>
+         )}
+       </AnimatePresence>
     </div>
   );
 }
